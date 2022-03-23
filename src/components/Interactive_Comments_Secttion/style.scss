@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+*{
+    font-family: "Rubik", serif;
+
+}
+
+.comment_section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width: 60%;
+    min-height: 20vh;
+    height: 100%;
+    margin:2em auto;
+    padding: 1em;
+    transition: all 0.5s ease-in-out;
+    .likes_container{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding:0 0.5em;
+        background-color: hsl(223, 19%, 93%);
+        justify-content: space-evenly;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        margin: auto;
+        margin-right: 1em;
+        min-height: 6em;
+        height: 100%;
+        button{
+            background-color: transparent;
+            border: none;
+            font-size: 0.7rem;
+            font-weight: 100;
+            cursor: pointer;
+            i{
+                color: hsl(0, 0%, 49%);
+
+            }
+        }
+        *{
+            color: hsl(238, 40%, 52%);
+        }
+        span{
+            font-size: 1.3rem;
+        }
+        
+
+    }
+    .comment_container{
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        .identity_container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5em;
+
+            .person_container{
+                display: flex;
+                flex-direction: row;
+                width: 60%;
+                justify-content: flex-start;
+                gap: 1em;
+                align-items: center;
+                white-space: nowrap;
+                padding-right: 1.5em;
+                img{
+                    width: 30px;
+                    height: auto;
+                }
+                span{
+                    font-size: 1rem;
+                    color: hsl(223, 0%, 40%);
+                    font-weight: 400;
+                }
+                h4{
+                    font-size: 1.1rem;
+                }
+
+            }
+
+        }
+        p{
+            white-space: pre-wrap;
+            display: block;
+            width: 95%;
+            letter-spacing: 0.5px;
+            font-size: 1.25rem;
+            font-weight: 100;
+            text-align: start;
+            color: hsl(223, 0%, 40%);
+            margin-top: 0.5em;
+            line-height: 1.4em;
+        }
+    }
+    .reply_button_container{
+        position: absolute;
+        left: 77%;
+        transform: translateX(-77%);
+        width: fit-content;
+        button{
+            left: 60%;
+            color: hsl(238, 40%, 52%);
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .comment_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: white;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        width: 60%;
+        min-height: 20vh;
+        height: 100%;
+        margin:2em auto;
+        padding: 1em;
+        .likes_container{
+            position: relative;
+            left: 0;
+            order: 3;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 0.5em 0;
+            margin: 0;
+            min-height: fit-content;
+            width: 16vw;
+        }
+        .reply_button_container{
+            position: relative;
+            top: 30px;
+            left: 95%;
+            transform: translateX(-95%);
+            order: 2;
+        }
+    }
+}
+@media screen and (max-width: 750px){
+    .comment_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: white;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        width: 95%;
+        min-height: 20vh;
+        height: 100%;
+        margin:2em auto;
+        padding: 1em;
+    }
+}
