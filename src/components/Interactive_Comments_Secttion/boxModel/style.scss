@@ -154,6 +154,7 @@
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
+    height: 35px;
 }
 .button button.cancel {
     background: #d8266a;
@@ -169,8 +170,8 @@
 
 .button button.clear {
     background-color: transparent;
-    border: 2px solid hsl(211, 77%, 75%);
-    color: hsl(211, 77%, 75%);
+    border: 2px solid hsl(239, 57%, 75%);
+    color: hsl(239, 57%, 75%);
     margin-right: 5%;
 }
 .button button.clear:hover {
@@ -183,21 +184,23 @@
 @media screen and (max-width: 1000px) {
     .section .popup_box {
         position: relative;
-        min-width: 100vw;
-        padding: 1em 0em;
+        min-width: 90vw;
+        padding: 1em 1em;
         width: 100%;
-        min-height: 60vh;
+        margin: auto;
+        min-height: 30vh;
         background: #fff;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
-        height: 95%;
+        height: 50%;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
         -ms-border-radius: 10px;
         -o-border-radius: 10px;
+        font-size: 1.2rem;
     }
     .button {
         display: flex;
@@ -208,20 +211,16 @@
         align-content: center;
         width: 90%;
         button {
-            width: 80% !important;
-            height: 40px;
-        }
-        .cancel {
-            order: 3;
-            margin: 0.2em 0 !important;
+            width: 100% !important;
+            height: 45px;
         }
         .send {
             order: 1;
-            margin: 0.2em 0 !important;
+            margin: 0.5em 0 !important;
         }
         .clear {
             order: 2;
-            margin: 0.2em 0 !important;
+            margin: 0.5em 0 !important;
         }
     }
 }

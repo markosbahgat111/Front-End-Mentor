@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import "./comments.scss";
-import { IComment } from "../../models/Comments.interface";
-import NewReply from "./NewReplyForm";
-import { upVote, downVote, FetchState, editReply, editComment } from "services/slices/data.slice";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { downVote, editReply, FetchState, upVote } from "../../services/slices/data.slice";
 import { showModel } from "../../services/slices/essentials.slice";
+import NewReply from "./NewReplyForm";
+import { useState } from "react";
+import { IComment } from "../../models/Comments.interface";
+import "./replies.scss";
 import { IReply } from "../../models/reply.interface";
-import ReplySection from "./replies.components.";
 
 interface IReplaing extends IComment {
 	replyingTo?: string;
@@ -16,8 +15,7 @@ interface Props {
 	currentUserName?: string;
 	commentId?: number;
 }
-
-const CommentsSection: React.FC<Props> = ({ item, currentUserName, commentId }) => {
+const ReplySection: React.FC<Props> = ({ item, currentUserName, commentId }) => {
 	const [inputValue, setInputValue] = useState<string>(item.content);
 	const [show, setShow] = useState<boolean>(false);
 	const [editModeOn, setEditModeOn] = useState<boolean>(false);
@@ -40,7 +38,7 @@ const CommentsSection: React.FC<Props> = ({ item, currentUserName, commentId }) 
 		dispatch(showModel({ case: true, parent: commentId, child: item.id }));
 	};
 	const handleUpdate = () => {
-		dispatch(editComment({ id: item.id, content: inputValue }));
+		dispatch(editReply({ commentId, replyId: item.id, content: inputValue }));
 		setEditModeOn((editModeOn) => !editModeOn);
 	};
 	const date = new Date();
@@ -54,7 +52,7 @@ const CommentsSection: React.FC<Props> = ({ item, currentUserName, commentId }) 
 			: "A Few Seconds Ago";
 	return (
 		<>
-			<section className="comment_section" id="comment">
+			<section className="comment_section" id="reply">
 				<div className="likes_container">
 					<button onClick={handleUp}>
 						<i className="fa-solid fa-plus" />
@@ -89,10 +87,17 @@ const CommentsSection: React.FC<Props> = ({ item, currentUserName, commentId }) 
 							</button>
 						</>
 					) : (
-						<p>{item.content}</p>
+						<p>
+							{item.replyingTo && (
+								<span style={{ color: "hsl(238, 40%, 52%)", fontWeight: "500" }}>
+									@{item.replyingTo + " "}
+								</span>
+							)}
+							{item.content}
+						</p>
 					)}
 				</div>
-				<div className="reply_button_container">
+				<div className="edit_del_container">
 					{item.user.username !== currentUserName ? (
 						<button onClick={() => setShow(true)}>
 							<i className="fa-solid fa-reply" /> Reply
@@ -109,6 +114,15 @@ const CommentsSection: React.FC<Props> = ({ item, currentUserName, commentId }) 
 					)}
 				</div>
 			</section>
+			{item.replies?.length > 0 &&
+				item.replies.map((reply: IReply) => (
+					<ReplySection
+						key={reply.id}
+						commentId={item.id}
+						item={reply}
+						currentUserName={state.CurrentUser.username}
+					/>
+				))}
 			{show && (
 				<NewReply
 					setShow={setShow}
@@ -117,23 +131,8 @@ const CommentsSection: React.FC<Props> = ({ item, currentUserName, commentId }) 
 					replyId={item.id}
 				/>
 			)}
-			{item.replies.length > 0 && (
-				<div className="reply_container">
-					<hr />
-					<div className="replies">
-						{item.replies.map((reply: IReply) => (
-							<ReplySection
-								key={reply.id}
-								commentId={item.id}
-								item={reply}
-								currentUserName={state.CurrentUser.username}
-							/>
-						))}
-					</div>
-				</div>
-			)}
 		</>
 	);
 };
 
-export default CommentsSection;
+export default ReplySection;

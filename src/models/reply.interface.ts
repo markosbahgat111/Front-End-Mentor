@@ -1,9 +1,8 @@
-import { IReply } from "./reply.interface";
-
-export interface IComment {
+export interface IReply {
 	content: string;
 	id: number;
 	createdAt: number;
+	replyingTo?: string;
 	replies: IReply[];
 	score: number;
 	user: {

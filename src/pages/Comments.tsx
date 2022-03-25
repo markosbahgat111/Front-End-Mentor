@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const Comments = (props: Props) => {
-  return (
-    <div>Comments</div>
-  )
-}
+	return <div>Comments</div>;
+};
 
-export default Comments
+export default Comments;
